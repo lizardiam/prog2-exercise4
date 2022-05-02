@@ -3,46 +3,56 @@ package weather.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 
+import tk.plogitech.darksky.forecast.GeoCoordinates;
+import tk.plogitech.darksky.forecast.model.Latitude;
+import tk.plogitech.darksky.forecast.model.Longitude;
 import weather.ctrl.WeatherController;
 
-public class UserInterface 
-{
+public class UserInterface {
 
 	private WeatherController ctrl = new WeatherController();
 
-	public void getWeatherForCity1(){
-		
-		//TODO enter the coordinates 
-		ctrl.process(null);
+	public void getWeatherForVienna(){
+		Longitude longitudeVienna = new Longitude(48);
+		Latitude latitudeVienna = new Latitude(16);
+		GeoCoordinates vienna = new GeoCoordinates(longitudeVienna, latitudeVienna);
+
+		ctrl.process(vienna);
 
 	}
 
-	public void getWeatherForCity2(){
-		//TODO enter the coordinates 
-		ctrl.process(null);
+	public void getWeatherForCologne(){
+		Longitude longitudeCologne = new Longitude(50);
+		Latitude latitudeCologne = new Latitude(6);
+		GeoCoordinates cologne = new GeoCoordinates(longitudeCologne, latitudeCologne);
+		ctrl.process(cologne);
 
 	}
 
-	public void getWeatherForCity3(){
-		//TODO enter the coordinates 
-		ctrl.process(null);
+	public void getWeatherForFlorence(){
+		Longitude longitudeFlorence = new Longitude(43);
+		Latitude latitudeFlorence = new Latitude(11);
+		GeoCoordinates florence = new GeoCoordinates(longitudeFlorence, latitudeFlorence);
+		ctrl.process(florence);
 
 }
 	
 	public void getWeatherByCoordinates() {
-		//TODO read the coordinates from the cmd
-		//TODO enter the coordinates 
-		ctrl.process(null);
-		
+		Scanner scanner = new Scanner(System.in)
+		Longitude longitude = new Longitude(scanner.nextInt());
+		Latitude latitude = new Latitude(scanner.nextInt());
+		GeoCoordinates location = new GeoCoordinates(longitude, latitude);
+		ctrl.process(location);
 	}
 
 	public void start() {
 		Menu<Runnable> menu = new Menu<>("Weather Infos");
 		menu.setTitel("Wählen Sie eine Stadt aus:");
-		menu.insert("a", "City 1", this::getWeatherForCity1);
-		menu.insert("b", "City 2", this::getWeatherForCity2);
-		menu.insert("c", "City 3", this::getWeatherForCity3);
+		menu.insert("a", "Wien", this::getWeatherForVienna);
+		menu.insert("b", "Köln", this::getWeatherForCologne);
+		menu.insert("c", "Florenz", this::getWeatherForFlorence);
 		menu.insert("d", "City via Coordinates:",this::getWeatherByCoordinates);
 		menu.insert("q", "Quit", null);
 		Runnable choice;
