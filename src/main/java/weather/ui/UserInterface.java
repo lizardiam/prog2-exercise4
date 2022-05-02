@@ -15,8 +15,8 @@ public class UserInterface {
 	private WeatherController ctrl = new WeatherController();
 
 	public void getWeatherForVienna(){
-		Longitude longitudeVienna = new Longitude(48);
-		Latitude latitudeVienna = new Latitude(16);
+		Longitude longitudeVienna = new Longitude(48.210033);
+		Latitude latitudeVienna = new Latitude(16.363449);
 		GeoCoordinates vienna = new GeoCoordinates(longitudeVienna, latitudeVienna);
 
 		ctrl.process(vienna);
@@ -24,23 +24,23 @@ public class UserInterface {
 	}
 
 	public void getWeatherForCologne(){
-		Longitude longitudeCologne = new Longitude(50);
-		Latitude latitudeCologne = new Latitude(6);
+		Longitude longitudeCologne = new Longitude(50.935173);
+		Latitude latitudeCologne = new Latitude(6.953101);
 		GeoCoordinates cologne = new GeoCoordinates(longitudeCologne, latitudeCologne);
 		ctrl.process(cologne);
 
 	}
 
 	public void getWeatherForFlorence(){
-		Longitude longitudeFlorence = new Longitude(43);
-		Latitude latitudeFlorence = new Latitude(11);
+		Longitude longitudeFlorence = new Longitude(43.769562);
+		Latitude latitudeFlorence = new Latitude(11.255814);
 		GeoCoordinates florence = new GeoCoordinates(longitudeFlorence, latitudeFlorence);
 		ctrl.process(florence);
 
 }
 	
 	public void getWeatherByCoordinates() {
-		Scanner scanner = new Scanner(System.in)
+		Scanner scanner = new Scanner(System.in);
 		Longitude longitude = new Longitude(scanner.nextInt());
 		Latitude latitude = new Latitude(scanner.nextInt());
 		GeoCoordinates location = new GeoCoordinates(longitude, latitude);

@@ -14,7 +14,7 @@ public class WeatherController {
         System.out.println("process "+location); //$NON-NLS-1$
 		Forecast data = getData(location);
 		
-		//TODO implement Error handling 
+		//TODO implement Error handling
 		
 		//TODO implement methods for
 		// highest temperature 
@@ -34,14 +34,14 @@ public class WeatherController {
 
         DarkSkyJacksonClient client = new DarkSkyJacksonClient();
 
+        Forecast forecast = new Forecast();
         try {
-            Forecast forecast = client.forecast(request);
+            forecast = client.forecast(request);
             System.out.println(forecast.getDaily());
         } catch (ForecastException e) {
             e.printStackTrace();
         }
 
-
-        return null;
+        return forecast;
     }
 }
