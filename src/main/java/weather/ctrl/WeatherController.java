@@ -1,12 +1,9 @@
 package weather.ctrl;
 
-
 import tk.plogitech.darksky.api.jackson.DarkSkyJacksonClient;
 import tk.plogitech.darksky.forecast.*;
 import tk.plogitech.darksky.forecast.model.DailyDataPoint;
 import tk.plogitech.darksky.forecast.model.Forecast;
-
-import java.util.OptionalDouble;
 
 public class WeatherController {
 
