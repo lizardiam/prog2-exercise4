@@ -23,7 +23,7 @@ public class Menu<T> {
 	
 	private String titel;
 	
-	private List<MenuEntry<T>> menuEintraege;
+	private final List<MenuEntry<T>> menuEintraege;
 
 	Menu(String title) {
 		menuEintraege = new ArrayList<>();
@@ -58,7 +58,7 @@ public class Menu<T> {
 			try {
 				value = inReader.readLine();
 			} catch (IOException e) {
-				System.out.println("Error reading from cmd:" + e.toString());
+				System.out.println("Error reading from cmd:" + e);
 				System.out.println(NEW_LINE);
 				System.out.println("Exit with Ctrl C");
 			}
