@@ -5,6 +5,8 @@ import tk.plogitech.darksky.forecast.*;
 import tk.plogitech.darksky.forecast.model.DailyDataPoint;
 import tk.plogitech.darksky.forecast.model.Forecast;
 
+// https://github.com/lizardiam/prog2-exercise3
+
 public class WeatherController {
 
     private final String apiKey = "ab5c55091bfde0864c41b337f1c66af5";
@@ -27,7 +29,8 @@ public class WeatherController {
             e.printStackTrace();
         }
 
-		// implement a Comparator for the Windspeed 
+		// implement a Comparator for the Windspeed
+        // Schreiben Sie eigenen Comparator um den Wind auf stündlicher Basis zu vergleichen
 		
 	}
 
@@ -41,6 +44,10 @@ public class WeatherController {
 
     public long getDailyValues(Forecast data){
         return data.getDaily().getData().size();
+    }
+
+    public double compareWind(Forecast data){
+        return data.getHourly().getData().stream().mapToDouble(DailyDataPoint::getTemperatureHigh).
     }
     
     public Forecast getData(GeoCoordinates location) {
