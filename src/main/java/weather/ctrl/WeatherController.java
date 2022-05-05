@@ -46,9 +46,9 @@ public class WeatherController {
         return data.getDaily().getData().size();
     }
 
-    public double compareWind(Forecast data){
+    /*public double compareWind(Forecast data){
         return data.getHourly().getData().stream().mapToDouble(DailyDataPoint::getTemperatureHigh).
-    }
+    } */
     
     public Forecast getData(GeoCoordinates location) {
 		ForecastRequest request = new ForecastRequestBuilder()
