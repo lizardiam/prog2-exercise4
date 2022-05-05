@@ -3,7 +3,10 @@ package weather.ctrl;
 
 import tk.plogitech.darksky.api.jackson.DarkSkyJacksonClient;
 import tk.plogitech.darksky.forecast.*;
+import tk.plogitech.darksky.forecast.model.DailyDataPoint;
 import tk.plogitech.darksky.forecast.model.Forecast;
+
+import java.util.OptionalDouble;
 
 public class WeatherController {
 
@@ -13,18 +16,35 @@ public class WeatherController {
     public void process(GeoCoordinates location) {
         System.out.println("process "+location); //$NON-NLS-1$
 		Forecast data = getData(location);
-		
-		//TODO implement Error handling
-		
-		//TODO implement methods for
-		// highest temperature 
-		// average temperature 
-		// count the daily values
-		
+
+        try {
+            // highest temperature
+            System.out.println("Highest temperature: " + getHighestTemperature(data));
+
+            // average temperature
+            System.out.println("Average temperature: " + getAverageTemperature(data));
+
+            // count the daily values
+            System.out.println("Daily values count: " + getDailyValues(data));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
 		// implement a Comparator for the Windspeed 
 		
 	}
-    
+
+    public double getHighestTemperature(Forecast data){
+        return data.getDaily().getData().stream().mapToDouble(DailyDataPoint::getTemperatureHigh).max().orElseThrow();
+    }
+
+    public double getAverageTemperature(Forecast data){
+        return data.getDaily().getData().stream().mapToDouble(DailyDataPoint::getTemperatureHigh).average().orElseThrow();
+    }
+
+    public long getDailyValues(Forecast data){
+        return data.getDaily().getData().size();
+    }
     
     public Forecast getData(GeoCoordinates location) {
 		ForecastRequest request = new ForecastRequestBuilder()
@@ -37,7 +57,6 @@ public class WeatherController {
         Forecast forecast = new Forecast();
         try {
             forecast = client.forecast(request);
-            System.out.println(forecast.getDaily());
         } catch (ForecastException e) {
             e.printStackTrace();
         }
