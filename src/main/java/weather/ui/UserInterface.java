@@ -52,6 +52,7 @@ public class UserInterface {
         menu.insert("b", "Koeln", this::getWeatherForCologne);
         menu.insert("c", "Florenz", this::getWeatherForFlorence);
         menu.insert("d", "City via Coordinates:", this::getWeatherByCoordinates);
+        //ToDo: menu.insert("e", "Download Weather Parallel", this::)
         menu.insert("q", "Quit", null);
         Runnable choice;
         while ((choice = menu.exec()) != null) {

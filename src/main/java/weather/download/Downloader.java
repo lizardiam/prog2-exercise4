@@ -18,7 +18,7 @@ public abstract class Downloader {
 
     public String save(GeoCoordinates coordinates) throws ForecastException {
         String fileName = "";
-        BufferedWriter writer= null;
+        BufferedWriter writer = null;
         try {
             ForecastRequest request = new ForecastRequestBuilder()
                     .key(new APIKey(WeatherController.apiKey))
@@ -31,7 +31,7 @@ public abstract class Downloader {
 
             WeatherFormatter weatherFormatter = new WeatherFormatter();
 
-            fileName = DIRECTORY_DOWNLOAD +coordinates.toString() + EXTENSION;
+            fileName = DIRECTORY_DOWNLOAD + coordinates.toString() + EXTENSION;
 
             writer = new BufferedWriter(new FileWriter(fileName));
             writer.write(weatherFormatter.format(forecast));

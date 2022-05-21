@@ -9,7 +9,7 @@ import tk.plogitech.darksky.forecast.model.Forecast;
 
 public class WeatherController {
 
-    private final String apiKey = "ab5c55091bfde0864c41b337f1c66af5";
+     public static final String apiKey = "ab5c55091bfde0864c41b337f1c66af5";
     
 
     public void process(GeoCoordinates location) {
