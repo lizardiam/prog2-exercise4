@@ -53,6 +53,8 @@ public class UserInterface {
     }
 
     public void parallelDownload() throws ForecastException {
+        long startTime = System.currentTimeMillis();
+
         List<GeoCoordinates> geoCoordinatesList = new ArrayList<>();
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(16.371234), new Latitude(48.208704))); //Wien
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.3676), new Latitude(50.8371))); // Brüssel
@@ -62,10 +64,18 @@ public class UserInterface {
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(26.0979), new Latitude(44.4479))); //Bukarest
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(17.1547), new Latitude(48.2116))); //Bratislava
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.8910), new Latitude(52.3738))); //Amsterdam
-        sd.process(geoCoordinatesList);
+        /*for (GeoCoordinates coordinates : geoCoordinatesList){
+            ctrl.process(coordinates);
+        }*/
+        pd.process(geoCoordinatesList);
+
+        long elapsedTime = System.currentTimeMillis();
+        System.out.println("Execution time: " + (elapsedTime - startTime));
     }
 
     public void sequentialDownload() throws ForecastException {
+        long startTime = System.currentTimeMillis();
+
         List<GeoCoordinates> geoCoordinatesList = new ArrayList<>();
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(16.371234), new Latitude(48.208704))); //Wien
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.3676), new Latitude(50.8371))); // Brüssel
@@ -75,7 +85,13 @@ public class UserInterface {
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(26.0979), new Latitude(44.4479))); //Bukarest
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(17.1547), new Latitude(48.2116))); //Bratislava
         geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.8910), new Latitude(52.3738))); //Amsterdam
-        pd.process(geoCoordinatesList);
+        /*for (GeoCoordinates coordinates : geoCoordinatesList){
+            ctrl.process(coordinates);
+        }*/
+        sd.process(geoCoordinatesList);
+
+        long elapsedTime = System.currentTimeMillis();
+        System.out.println("Execution time: " + (elapsedTime - startTime));
     }
 
     public void start() {

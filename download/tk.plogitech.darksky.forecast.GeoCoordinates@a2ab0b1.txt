@@ -1,0 +1,10 @@
+Leichter Regen am am Dienstag und Mittwoch.
+
+Hourly
+Avg cloud cover: 0.7485714285714286
+Avg apparent temperature: 18.93
+Avg visibility: 16.093
+Total ozone: 17000.3
+Daily
+Avg min temp: 13.373750000000001
+Avg max temp: 22.653750000000002

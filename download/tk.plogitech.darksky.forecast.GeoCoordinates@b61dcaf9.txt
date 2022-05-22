@@ -1,0 +1,10 @@
+Leichter Regen am morgen bis Freitag.
+
+Hourly
+Avg cloud cover: 0.8634693877551021
+Avg apparent temperature: 15.943469387755103
+Avg visibility: 15.832224489795918
+Total ozone: 17455.6
+Daily
+Avg min temp: 11.1275
+Avg max temp: 17.085

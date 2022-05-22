@@ -1,0 +1,10 @@
+Leichter Regen am am Samstag und nächsten Sonntag.
+
+Hourly
+Avg cloud cover: 0.7142857142857143
+Avg apparent temperature: 19.278163265306123
+Avg visibility: 16.075142857142858
+Total ozone: 17876.9
+Daily
+Avg min temp: 16.06875
+Avg max temp: 27.25125

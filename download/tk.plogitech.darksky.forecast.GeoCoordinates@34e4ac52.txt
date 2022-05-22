@@ -1,0 +1,10 @@
+Die ganze Woche kein Niederschlag.
+
+Hourly
+Avg cloud cover: 0.5385714285714286
+Avg apparent temperature: 20.987142857142857
+Avg visibility: 16.093
+Total ozone: 16065.1
+Daily
+Avg min temp: 14.09
+Avg max temp: 27.6325

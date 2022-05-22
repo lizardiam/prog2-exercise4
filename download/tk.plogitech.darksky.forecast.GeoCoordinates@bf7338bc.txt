@@ -1,0 +1,10 @@
+Regen am heute bis Freitag.
+
+Hourly
+Avg cloud cover: 0.9267346938775509
+Avg apparent temperature: 13.31734693877551
+Avg visibility: 15.335755102040816
+Total ozone: 17416.5
+Daily
+Avg min temp: 9.3275
+Avg max temp: 17.85125
