@@ -3,19 +3,26 @@ package weather.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
+import tk.plogitech.darksky.forecast.ForecastException;
 import tk.plogitech.darksky.forecast.GeoCoordinates;
 import tk.plogitech.darksky.forecast.model.Latitude;
 import tk.plogitech.darksky.forecast.model.Longitude;
 import weather.ctrl.WeatherController;
+import weather.download.ParallelDownloader;
+import weather.download.SequentialDownloader;
 
 public class UserInterface {
 
     private final WeatherController ctrl = new WeatherController();
+    private final SequentialDownloader sd = new SequentialDownloader();
+    private final ParallelDownloader pd = new ParallelDownloader();
 
     public void getWeatherForVienna() {
-        Longitude longitudeVienna = new Longitude(48.210033);
-        Latitude latitudeVienna = new Latitude(16.363449);
+        Longitude longitudeVienna = new Longitude(48.208704);
+        Latitude latitudeVienna = new Latitude(16.371234);
         GeoCoordinates vienna = new GeoCoordinates(longitudeVienna, latitudeVienna);
 
         ctrl.process(vienna);
@@ -45,6 +52,32 @@ public class UserInterface {
         ctrl.process(location);
     }
 
+    public void parallelDownload() throws ForecastException {
+        List<GeoCoordinates> geoCoordinatesList = new ArrayList<>();
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(16.371234), new Latitude(48.208704))); //Wien
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.3676), new Latitude(50.8371))); // Brüssel
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(-3.7033), new Latitude(40.4167))); // Madrid
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(10.7387), new Latitude(59.9138))); // Oslo
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(18.0645), new Latitude(59.3328))); //Stockholm
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(26.0979), new Latitude(44.4479))); //Bukarest
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(17.1547), new Latitude(48.2116))); //Bratislava
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.8910), new Latitude(52.3738))); //Amsterdam
+        sd.process(geoCoordinatesList);
+    }
+
+    public void sequentialDownload() throws ForecastException {
+        List<GeoCoordinates> geoCoordinatesList = new ArrayList<>();
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(16.371234), new Latitude(48.208704))); //Wien
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.3676), new Latitude(50.8371))); // Brüssel
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(-3.7033), new Latitude(40.4167))); // Madrid
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(10.7387), new Latitude(59.9138))); // Oslo
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(18.0645), new Latitude(59.3328))); //Stockholm
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(26.0979), new Latitude(44.4479))); //Bukarest
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(17.1547), new Latitude(48.2116))); //Bratislava
+        geoCoordinatesList.add(new GeoCoordinates(new Longitude(4.8910), new Latitude(52.3738))); //Amsterdam
+        pd.process(geoCoordinatesList);
+    }
+
     public void start() {
         Menu<Runnable> menu = new Menu<>("Weather Infos");
         menu.setTitel("Wählen Sie eine Stadt aus:");
@@ -52,7 +85,20 @@ public class UserInterface {
         menu.insert("b", "Koeln", this::getWeatherForCologne);
         menu.insert("c", "Florenz", this::getWeatherForFlorence);
         menu.insert("d", "City via Coordinates:", this::getWeatherByCoordinates);
-        //ToDo: menu.insert("e", "Download Weather Parallel", this::)
+        menu.insert("e", "Download Weather Parallel", () -> {
+            try {
+                parallelDownload();
+            } catch (ForecastException e) {
+                e.printStackTrace();
+            }
+        });
+        menu.insert("f", "Download Weather Sequential", () -> {
+            try {
+                sequentialDownload();
+            } catch (ForecastException e) {
+                e.printStackTrace();
+            }
+        });
         menu.insert("q", "Quit", null);
         Runnable choice;
         while ((choice = menu.exec()) != null) {
